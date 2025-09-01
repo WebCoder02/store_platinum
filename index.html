@@ -619,38 +619,37 @@
             let fullDesc = dish.description || "";
 
             return `
-                <div class="dish">
-                    <div class="dish-content">
-                        <div class="dish-details">
-                            <h3 class="dish-name">
-                                <a href="product.html?id=${dish.id}">${dish.name || 'Unknown Dish'}</a>
-                            </h3>
-                            <div class="dish-pricing">
-                                <span class="dish-price">₹${dish.price || 0}</span>
-
-                                ${dish.price ? `<span class="original-price">₹${Math.floor(dish.price * (1 + ((typeof dish.offer === 'number' && dish.offer >= 1 && dish.offer <= 99 ? dish.offer : 1) / 100)))}</span>` : ''}
-                                <span class="offer">${dish.offer}% OFF</span>
-                            </div>
-                            ${stars ? `<div class="dish-rating">${stars} (${dish.rating})</div>` : ''}
-                            <p class="dish-description" 
-                                data-full="${fullDesc}" 
-                                data-short="${shortDesc}">
-                                ${window.innerWidth < 480 && fullDesc.length > 50 ? 
-                                    shortDesc + ' <span class="read-more">Read More</span>' : fullDesc}
-                            </p>
-                            ${dish.subcategory ? `<div class="dish-subcategory">${dish.subcategory}</div>` : ''}
-                        </div>
-                        ${dish.image ? `<img class="dish-image lazy-img" data-src="${dish.image}" alt="${dish.name}">` : ''}
+        <div class="dish">
+            <div class="dish-content">
+                <div class="dish-details">
+                    <h3 class="dish-name">
+                        <a href="product.html?id=${dish.id}">${dish.name || 'Unknown Dish'}</a>
+                    </h3>
+                    <div class="dish-pricing">
+                        <span class="dish-price">₹${dish.price || 0}</span>
+                        ${dish.price ? `<span class="original-price">₹${Math.floor(dish.price * (1 + ((typeof dish.offer === 'number' && dish.offer >= 1 && dish.offer <= 99 ? dish.offer : 1) / 100)))}</span>` : ''}
+                        <span class="offer">${dish.offer}% OFF</span>
                     </div>
-                    <div class="dish-footer">
-                        <button class="order-btn" 
-                            onclick="selectDish('${dish.name} - ₹${dish.price}', this)" 
-                            ${isAvailable ? '' : 'disabled'}>
-                            ${isAvailable ? 'Add to Order' : 'Available Soon'}
-                        </button>
-                    </div>
+                    ${stars ? `<div class="dish-rating">${stars} (${dish.rating})</div>` : ''}
+                    <p class="dish-description" 
+                        data-full="${fullDesc}" 
+                        data-short="${shortDesc}">
+                        ${window.innerWidth < 480 && fullDesc.length > 50 ? 
+                            shortDesc + ' <span class="read-more">Read More</span>' : fullDesc}
+                    </p>
+                    ${dish.subcategory ? `<div class="dish-subcategory">${dish.subcategory}</div>` : ''}
                 </div>
-            `;
+                ${dish.image ? `<img class="dish-image lazy-img" data-src="${dish.image}" alt="${dish.name}">` : ''}
+            </div>
+            <div class="dish-footer">
+                ${
+                    (typeof dish.dyn_inv === "number" && dish.dyn_inv < 1)
+                    ? `<button class="order-btn" disabled>Available Soon</button>`
+                    : `<button class="order-btn" onclick="selectDish('${dish.name} - ₹${dish.price}', this)" ${isAvailable ? '' : 'disabled'}>${isAvailable ? 'Add to Order' : 'Available Soon'}</button>`
+                }
+            </div>
+        </div>
+    `;
         }
 
         // Generate star rating HTML
@@ -755,56 +754,69 @@
 
         // Select dish and show counter
         function selectDish(dishName, buttonElement) {
-            if (!selectedDishes[dishName]) {
-                selectedDishes[dishName] = 1;
-                // Set flag to true for the selected item
-                if (Array.isArray(storeData.items)) {
-                const item = storeData.items.find(
+    if (!selectedDishes[dishName]) {
+        selectedDishes[dishName] = 1;
+        // Set flag to true for the selected item
+        let dishObj = null;
+        if (Array.isArray(storeData.items)) {
+            dishObj = storeData.items.find(
                 i => `${i.name} - ₹${i.price}` === dishName
-                );
-            if (item) item.flag = true;
+            );
+            if (dishObj) dishObj.flag = true;
         }
-                toggleCounter(buttonElement, dishName);
-            }
-            updateCartUI();
-        }
+        toggleCounter(buttonElement, dishName, dishObj); // <-- pass dishObj here!
+    }
+    updateCartUI();
+}
 
         // Toggle counter display
-        function toggleCounter(buttonElement, dishName) {
+        function toggleCounter(buttonElement, dishName, dishObj) {
+            const maxQty = (dishObj && typeof dishObj.dyn_inv === "number") ? dishObj.dyn_inv : 99;
+            const currentQty = selectedDishes[dishName] || 1;
+            const plusDisabled = currentQty >= maxQty ? 'disabled' : '';
+                
             const wrapper = document.createElement("div");
             wrapper.className = "dish-counter";
             wrapper.innerHTML = `
                 <button class="counter-btn" onclick="updateCount('${dishName}', -1, this)">-</button>
-                <span class="count">${selectedDishes[dishName]}</span>
-                <button class="counter-btn" onclick="updateCount('${dishName}', 1, this)">+</button>
+                <span class="count">${currentQty}</span>
+                <button class="counter-btn" onclick="updateCount('${dishName}', 1, this)" ${plusDisabled}>+</button>
             `;
-
+                
             buttonElement.style.display = "none";
             buttonElement.parentNode.appendChild(wrapper);
         }
 
         // Update item count
         function updateCount(dishName, change, buttonElement) {
-            selectedDishes[dishName] = (selectedDishes[dishName] || 0) + change;
+            // Find the dish object
+            const [name, pricePart] = dishName.split(' - ₹');
+            const item = Array.isArray(storeData.items)
+                ? storeData.items.find(i => i.name === name && String(i.price) === pricePart)
+                : null;
+            const maxQty = (item && typeof item.dyn_inv === "number") ? item.dyn_inv : 99;
 
-            if (selectedDishes[dishName] <= 0) {
+            let newQty = (selectedDishes[dishName] || 0) + change;
+            if (newQty > maxQty) newQty = maxQty;
+            if (newQty <= 0) {
                 delete selectedDishes[dishName];
-                if (Array.isArray(storeData.items)) {
-                    const [name, pricePart] = dishName.split(' - ₹');
-                    const item = storeData.items.find(
-                        i => i.name === name && String(i.price) === pricePart
-                    );
-                    if (item) item.flag = false;
-                }
+                if (item) item.flag = false;
                 const counterElement = buttonElement.parentNode;
                 const addButton = counterElement.parentNode.querySelector(".order-btn");
                 counterElement.remove();
                 addButton.style.display = "inline-block";
             } else {
-                buttonElement.parentNode.querySelector(".count").textContent = selectedDishes[dishName];
+                selectedDishes[dishName] = newQty;
+                buttonElement.parentNode.querySelector(".count").textContent = newQty;
+
+                // Disable/enable "+" button as needed
+                const plusBtn = buttonElement.parentNode.querySelectorAll(".counter-btn")[1];
+                if (plusBtn) {
+                    plusBtn.disabled = newQty >= maxQty;
+                }
             }
             updateCartUI();
-        }
+        }   
 
         //Floating Cart
 function updateCartUI() {
