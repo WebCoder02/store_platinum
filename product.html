@@ -128,6 +128,93 @@
             color: #777;
             margin-top: 50px;
         }
+        /* Gallery Styling (using Flexbox for responsiveness) */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .gallery-item {
+            flex: 1 1 200px; /* Adjusts to screen size */
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gallery-item img,
+        .gallery-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures images/videos fill their container */
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img,
+        .gallery-item:hover video {
+            transform: scale(1.05);
+        }
+
+        /* Modal Styling */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: none; /* Hide by default */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal:target {
+            display: flex; /* Show when a link points to it */
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        /* Fullscreen Media Styling */
+        .modal-content img,
+        .modal-content video {
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
+            margin: auto; /* Center the content */
+        }
+
+        /* Vertical 9:16 Video Wrapper */
+        .video-wrapper {
+          position: relative;
+          width: 100%;
+          max-width: 400px;   /* adjust width as you like */
+          aspect-ratio: 9 / 16; /* modern way, keeps 9:16 */
+          margin: auto;
+        }
+
+        .video-wrapper video {
+          width: 100%;
+          height: 100%;
+          object-fit: cover; /* fill the box */
+          border-radius: 10px; /* optional for rounded look */
+        }
+
+        /* Close button styling */
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            z-index: 1001;
+        }
+
 
         @media (max-width: 480px) {
             body {
@@ -151,8 +238,10 @@
 </head>
 <body>
     <div class="product-container" id="product-details-container">
-        <div class="loading-message">Loading product details...</div>
+    <div class="loading-message">Loading product details...</div>
     </div>
+
+    
 
     <script>
         let storeData = {};
@@ -204,6 +293,48 @@
                 if (product) {
                     document.getElementById('product-page-title').textContent = product.name;
                     container.innerHTML = `
+                        <div class="gallery">
+                            <!-- Horizontal image -->
+                            <a href="#modal-image-1" class="gallery-item">
+                                <img src="${product.image}" alt="Description of horizontal image">
+                            </a>
+                            <!-- Vertical image -->
+                            <a href="#modal-image-2" class="gallery-item">
+                                <img src="${product.image}" alt="Description of vertical image">
+                            </a>
+                            <!-- Vertical 9:16 video -->
+                            <a href="#modal-video-1" class="gallery-item video-item">
+                                <img src="${product.image}" alt="Watch video" style="position:relative;">
+                            </a>
+                        </div>
+                        <!-- Modal for the first image -->
+    <div id="modal-image-1" class="modal" aria-hidden="true">
+        <div class="modal-content">
+            <a href="#" class="close-button">×</a>
+            <img src="${product.image}" alt="Description of horizontal image">
+        </div>
+    </div>
+    <!-- Modal for the second image -->
+    <div id="modal-image-2" class="modal" aria-hidden="true">
+        <div class="modal-content">
+            <a href="#" class="close-button">×</a>
+            <img src="${product.image}" alt="Description of vertical image">
+        </div>
+    </div>
+    <!-- Modal for the video -->
+    <div id="modal-video-1" class="modal" aria-hidden="true">
+        <div class="modal-content">
+            <a href="#" class="close-button">×</a>
+            <div class="video-wrapper">
+                <video controls>
+                    <source src="images/13691-251858985_medium.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </div>
+        
+
+
                         ${product.image ? `<img src="${product.image}" alt="${product.name}" class="product-image">` : ''}
                         <h1 class="product-name">${product.name}</h1>
                         <p class="product-price">₹${product.price}</p>
@@ -248,6 +379,40 @@
             const upiLink = `upi://pay?pa=${upiId}&am=${amount}&cu=INR`;
             window.open(upiLink, "_blank");
         }
+        //Controlling videos and images
+        document.addEventListener('DOMContentLoaded', () => {
+            // Select all modal links
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach(item => {
+    item.addEventListener('click', (event) => {
+        // Check if the item is a video
+        const isVideo = item.classList.contains('video-item');
+        if (isVideo) {
+            // Get the corresponding video in the modal
+            const videoId = item.getAttribute('href').substring(1);
+            const modalVideo = document.getElementById(videoId);
+        
+            // Play the video when the modal is opened
+            if (modalVideo) {
+                modalVideo.play();
+            }
+        }
+    });
+});
+            // Handle modal close
+            const closeButtons = document.querySelectorAll('.close-button');
+            closeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Pause any playing videos when a modal is closed
+                    const videos = document.querySelectorAll('.modal video');
+                    videos.forEach(video => {
+                        video.close();
+                    });
+                });
+            });
+        });
+
+
 
         document.addEventListener("DOMContentLoaded", loadProductDetails);
     </script>
