@@ -262,6 +262,23 @@
             text-decoration: none;
             z-index: 1001;
         }
+        /* Play button overlay */
+        .play-button {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          font-size: 48px;
+          color: white;
+          background: rgba(0, 0, 0, 0.5);
+          border-radius: 50%;
+          width: 70px;
+          height: 70px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          pointer-events: none; /* let clicks pass through to link */
+        }
 
 
         @media (max-width: 480px) {
@@ -367,7 +384,10 @@
 
                             <!-- Vertical 9:16 video -->
                             <a href="#modal-video-1" class="gallery-item video-item">
-                                <img src="${product["image-1"]}" alt="Watch video" style="position:relative;">
+                                <img src="${product["image-1"]}" alt="Watch video">
+                                <div class="play-button">
+                                    <i class="fa fa-play"></i>
+                                </div>
                             </a>
                         </div>
                         
