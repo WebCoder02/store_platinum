@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,6 +18,7 @@
             align-items: flex-start;
             min-height: 100vh;
         }
+
         .product-container {
             background-color: #fff;
             border-radius: 10px;
@@ -26,36 +28,44 @@
             width: 100%;
             text-align: center;
         }
+
         .product-image {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
+
         .product-name {
-            font-size: 1.8rem; /* Reduced font size */
+            font-size: 1.8rem;
+            /* Reduced font size */
             font-weight: bold;
             margin-bottom: 10px;
             color: #000;
-            max-height: 3.2em; /* Limit height for 256 characters */
+            max-height: 3.2em;
+            /* Limit height for 256 characters */
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
-            -webkit-line-clamp: 2; /* Limit to 2 lines */
+            -webkit-line-clamp: 2;
+            /* Limit to 2 lines */
             -webkit-box-orient: vertical;
         }
+
         .product-price {
             font-size: 1.8rem;
             color: #000;
             font-weight: bold;
             margin-bottom: 15px;
         }
+
         .product-rating {
             color: #ffc107;
             font-size: 1.1rem;
             margin-bottom: 15px;
         }
+
         .product-description {
             font-size: 1rem;
             line-height: 1.6;
@@ -63,17 +73,21 @@
             text-align: left;
             margin-bottom: 25px;
         }
+
         .add-text {
-            font-size: 0.8rem; /* Smaller font size for additional text */
+            font-size: 0.8rem;
+            /* Smaller font size for additional text */
             color: #777;
             margin-top: 10px;
             text-align: left;
         }
+
         .action-buttons {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
+
         .action-button {
             background-color: #000;
             color: #fff;
@@ -89,24 +103,32 @@
             align-items: center;
             justify-content: center;
         }
+
         .action-button i {
             margin-right: 10px;
         }
+
         .action-button.whatsapp {
             background-color: #25D366;
         }
+
         .action-button.whatsapp:hover {
             background-color: #1DA851;
         }
+
         .action-button.upi {
-            background-color: #673AB7; /* A common UPI color */
+            background-color: #673AB7;
+            /* A common UPI color */
         }
+
         .action-button.upi:hover {
             background-color: #512DA8;
         }
+
         .action-button:hover {
             background-color: #333;
         }
+
         .back-button {
             margin-top: 20px;
             background-color: #f0f0f0;
@@ -119,25 +141,44 @@
             text-decoration: none;
             display: inline-block;
         }
+
         .back-button:hover {
             background-color: #e0e0e0;
         }
+
         .loading-message {
             text-align: center;
             font-size: 1.2rem;
             color: #777;
             margin-top: 50px;
         }
+
         /* Gallery Styling (using Flexbox for responsiveness) */
         .gallery {
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
+            /* Stack items vertically */
             gap: 10px;
+            overflow-y: auto;
+            /* Enable vertical scroll */
+            overflow-x: hidden;
+            max-height: 350px;
+            /* Adjust as needed for your design */
+            margin-bottom: 20px;
+            scroll-snap-type: y mandatory;
         }
 
         .gallery-item {
-            flex: 1 1 200px; /* Adjusts to screen size */
+            flex: 0 0 auto;
+            width: 100%;
+            /* Full width of container */
+            height: 220px;
+            /* Adjust as needed */
+            border-radius: 8px;
             overflow: hidden;
+            scroll-snap-align: start;
+            position: relative;
+            background: #f5f5f5;
             cursor: pointer;
         }
 
@@ -145,8 +186,8 @@
         .gallery-item video {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Ensures images/videos fill their container */
-            transition: transform 0.3s ease;
+            object-fit: cover;
+            display: block;
         }
 
         .gallery-item:hover img,
@@ -162,14 +203,16 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.9);
-            display: none; /* Hide by default */
+            display: none;
+            /* Hide by default */
             justify-content: center;
             align-items: center;
             z-index: 1000;
         }
 
         .modal:target {
-            display: flex; /* Show when a link points to it */
+            display: flex;
+            /* Show when a link points to it */
         }
 
         .modal-content {
@@ -184,23 +227,28 @@
             display: block;
             max-width: 100%;
             max-height: 100%;
-            margin: auto; /* Center the content */
+            margin: auto;
+            /* Center the content */
         }
 
         /* Vertical 9:16 Video Wrapper */
         .video-wrapper {
-          position: relative;
-          width: 100%;
-          max-width: 400px;   /* adjust width as you like */
-          aspect-ratio: 9 / 16; /* modern way, keeps 9:16 */
-          margin: auto;
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            /* adjust width as you like */
+            aspect-ratio: 9 / 16;
+            /* modern way, keeps 9:16 */
+            margin: auto;
         }
 
         .video-wrapper video {
-          width: 100%;
-          height: 100%;
-          object-fit: cover; /* fill the box */
-          border-radius: 10px; /* optional for rounded look */
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* fill the box */
+            border-radius: 10px;
+            /* optional for rounded look */
         }
 
         /* Close button styling */
@@ -220,15 +268,20 @@
             body {
                 padding: 15px;
             }
+
             .product-container {
                 padding: 20px;
             }
+
             .product-name {
-                font-size: 1.5rem; /* Adjusted for smaller screens */
+                font-size: 1.5rem;
+                /* Adjusted for smaller screens */
             }
+
             .product-price {
                 font-size: 1.5rem;
             }
+
             .action-button {
                 font-size: 1rem;
                 padding: 10px 20px;
@@ -236,12 +289,13 @@
         }
     </style>
 </head>
+
 <body>
     <div class="product-container" id="product-details-container">
-    <div class="loading-message">Loading product details...</div>
+        <div class="loading-message">Loading product details...</div>
     </div>
 
-    
+
 
     <script>
         let storeData = {};
@@ -259,11 +313,11 @@
         // Generate star rating HTML (reused from index.html)
         function generateStars(rating) {
             if (!rating) return '';
-            
+
             let fullStars = Math.floor(rating);
             let halfStar = rating % 1 !== 0;
             let starHTML = "";
-            
+
             for (let i = 0; i < fullStars; i++) {
                 starHTML += '<i class="fa fa-star"></i> ';
             }
@@ -296,46 +350,31 @@
                         <div class="gallery">
                             <!-- Horizontal image -->
                             <a href="#modal-image-1" class="gallery-item">
-                                <img src="${product.image}" alt="Description of horizontal image">
+                                <img src="${product["image-1"]}" alt="Description of horizontal image">
                             </a>
                             <!-- Vertical image -->
                             <a href="#modal-image-2" class="gallery-item">
-                                <img src="${product.image}" alt="Description of vertical image">
+                                <img src="${product["image-2"]}" alt="Description of vertical image">
                             </a>
+                            <!-- Vertical image -->
+                            <a href="#modal-image-3" class="gallery-item">
+                                <img src="${product["image-3"]}" alt="Description of vertical image">
+                            </a>
+                            <!-- Vertical image -->
+                            <a href="#modal-image-4" class="gallery-item">
+                                <img src="${product["image-4"]}" alt="Description of vertical image">
+                            </a>
+
                             <!-- Vertical 9:16 video -->
                             <a href="#modal-video-1" class="gallery-item video-item">
-                                <img src="${product.image}" alt="Watch video" style="position:relative;">
+                                <img src="${product["image-1"]}" alt="Watch video" style="position:relative;">
                             </a>
                         </div>
-                        <!-- Modal for the first image -->
-    <div id="modal-image-1" class="modal" aria-hidden="true">
-        <div class="modal-content">
-            <a href="#" class="close-button">×</a>
-            <img src="${product.image}" alt="Description of horizontal image">
-        </div>
-    </div>
-    <!-- Modal for the second image -->
-    <div id="modal-image-2" class="modal" aria-hidden="true">
-        <div class="modal-content">
-            <a href="#" class="close-button">×</a>
-            <img src="${product.image}" alt="Description of vertical image">
-        </div>
-    </div>
-    <!-- Modal for the video -->
-    <div id="modal-video-1" class="modal" aria-hidden="true">
-        <div class="modal-content">
-            <a href="#" class="close-button">×</a>
-            <div class="video-wrapper">
-                <video controls>
-                    <source src="images/13691-251858985_medium.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>
-    </div>
+                        
         
 
 
-                        ${product.image ? `<img src="${product.image}" alt="${product.name}" class="product-image">` : ''}
+                        
                         <h1 class="product-name">${product.name}</h1>
                         <p class="product-price">₹${product.price}</p>
                         ${product.rating ? `<div class="product-rating">${generateStars(product.rating)} (${product.rating})</div>` : ''}
@@ -350,6 +389,45 @@
                             </button>
                         </div>
                         <a href="index.html" class="back-button">Back to Menu</a>
+                        <!-- Modal for the first image -->
+                        <div id="modal-image-1" class="modal" aria-hidden="true">
+                            <div class="modal-content">
+                                <a href="#" class="close-button">×</a>
+                                <img src="${product["image-1"]}" alt="Description of horizontal image">
+                            </div>
+                        </div>
+                        <!-- Modal for the second image -->
+                        <div id="modal-image-2" class="modal" aria-hidden="true">
+                            <div class="modal-content">
+                                <a href="#" class="close-button">×</a>
+                                <img src="${product["image-2"]}" alt="Description of vertical image">
+                            </div>
+                        </div>
+                        <!-- Modal for the third image -->
+                        <div id="modal-image-3" class="modal" aria-hidden="true">
+                            <div class="modal-content">
+                                <a href="#" class="close-button">×</a>
+                                <img src="${product["image-3"]}" alt="Description of vertical image">
+                            </div>
+                        </div>
+                        <!-- Modal for the fourth image -->
+                        <div id="modal-image-4" class="modal" aria-hidden="true">
+                            <div class="modal-content">
+                                <a href="#" class="close-button">×</a>
+                                <img src="${product["image-4"]}" alt="Description of vertical image">
+                            </div>
+                        </div>
+                        <!-- Modal for the video -->
+                        <div id="modal-video-1" class="modal" aria-hidden="true">
+                            <div class="modal-content">
+                                <a href="#" class="close-button">×</a>
+                                <div class="video-wrapper">
+                                    <video controls>
+                                        <source src="images/13691-251858985_medium.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
                     `;
                 } else {
                     container.innerHTML = '<div class="loading-message">Product not found.</div>';
@@ -384,21 +462,21 @@
             // Select all modal links
             const galleryItems = document.querySelectorAll('.gallery-item');
             galleryItems.forEach(item => {
-    item.addEventListener('click', (event) => {
-        // Check if the item is a video
-        const isVideo = item.classList.contains('video-item');
-        if (isVideo) {
-            // Get the corresponding video in the modal
-            const videoId = item.getAttribute('href').substring(1);
-            const modalVideo = document.getElementById(videoId);
-        
-            // Play the video when the modal is opened
-            if (modalVideo) {
-                modalVideo.play();
-            }
-        }
-    });
-});
+                item.addEventListener('click', (event) => {
+                    // Check if the item is a video
+                    const isVideo = item.classList.contains('video-item');
+                    if (isVideo) {
+                        // Get the corresponding video in the modal
+                        const videoId = item.getAttribute('href').substring(1);
+                        const modalVideo = document.getElementById(videoId);
+
+                        // Play the video when the modal is opened
+                        if (modalVideo) {
+                            modalVideo.play();
+                        }
+                    }
+                });
+            });
             // Handle modal close
             const closeButtons = document.querySelectorAll('.close-button');
             closeButtons.forEach(button => {
@@ -417,4 +495,5 @@
         document.addEventListener("DOMContentLoaded", loadProductDetails);
     </script>
 </body>
+
 </html>

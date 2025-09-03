@@ -639,7 +639,7 @@
                     </p>
                     ${dish.subcategory ? `<div class="dish-subcategory">${dish.subcategory}</div>` : ''}
                 </div>
-                ${dish.image ? `<img class="dish-image lazy-img" data-src="${dish.image}" alt="${dish.name}">` : ''}
+                ${dish["image-1"] ? `<img class="dish-image lazy-img" data-src="${dish["image-1"]}" alt="${dish.name}">` : ''}
             </div>
             <div class="dish-footer">
                 ${
