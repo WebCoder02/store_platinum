@@ -29,8 +29,8 @@
             "image-1": "/images/IB_Everyday_Sunscreen.jpeg",
             "image-2": "/images/IB_Everyday_Sunscreen.jpeg",
             "image-3": "/images/IB_Everyday_Sunscreen.jpeg",
-            "image-4": "/images/IB_Everyday_Sunscreen.jpeg",
-            "video-1": ""
+            "video_thumbnail": "/images/IB_Everyday_Sunscreen.jpeg",
+            "video-1": "/images/test.mp4"
         },
         {
             "name": "IsBeautiful Party Peel (30 ml)",
@@ -48,8 +48,8 @@
             "image-1": "/images/IB_Party_Peel.jpeg",
             "image-2": "/images/IB_Party_Peel.jpeg",
             "image-3": "/images/IB_Party_Peel.jpeg",
-            "image-4": "/images/IB_Party_Peel.jpeg",
-            "video-1": ""
+            "video_thumbnail": "/images/IB_Party_Peel.jpeg",
+            "video-1": "/images/test.mp4"
         },
         {
             "name": "IsBeautiful Nia Repair Toner Serum (30 ml)",
@@ -67,8 +67,8 @@
             "image-1": "/images/IB_Nia_Repair_Serum.jpeg",
             "image-2": "/images/IB_Nia_Repair_Serum.jpeg",
             "image-3": "/images/IB_Nia_Repair_Serum.jpeg",
-            "image-4": "/images/IB_Nia_Repair_Serum.jpeg",
-            "video-1": ""
+            "video_thumbnail": "/images/IB_Nia_Repair_Serum.jpeg",
+            "video-1": "/images/test.mp4"
         },
         {
             "name": "IsBeautiful PureGlow Toner Serum (30 ml)",
@@ -86,8 +86,8 @@
             "image-1": "/images/IB_Pureglow_Toner_Serum.jpeg",
             "image-2": "/images/IB_Pureglow_Toner_Serum.jpeg",
             "image-3": "/images/IB_Pureglow_Toner_Serum.jpeg",
-            "image-4": "/images/IB_Pureglow_Toner_Serum.jpeg",
-            "video-1": ""
+            "video_thumbnail": "/images/IB_Pureglow_Toner_Serum.jpeg",
+            "video-1": "/images/test.mp4"
         },
         {
             "name": "IsBeautiful IntimaPure Serum Lotion (30 ml)",
@@ -105,8 +105,8 @@
             "image-1": "/images/IB_Intimapure_Lotion.jpeg",
             "image-2": "/images/IB_Intimapure_Lotion.jpeg",
             "image-3": "/images/IB_Intimapure_Lotion.jpeg",
-            "image-4": "/images/IB_Intimapure_Lotion.jpeg",
-            "video-1": ""
+            "video_thumbnail": "/images/IB_Intimapure_Lotion.jpeg",
+            "video-1": "/images/test.mp4"
         },
         {
             "name": "IsBeautiful Skin Filter Face Wash (Oily to Sensitive)- 100 ml",
@@ -124,8 +124,8 @@
             "image-1": "/images/IB_Skinfilter_FaceWash.jpg",
             "image-2": "/images/IB_Skinfilter_FaceWash.jpg",
             "image-3": "/images/IB_Skinfilter_FaceWash.jpg",
-            "image-4": "/images/IB_Skinfilter_FaceWash.jpg",
-            "video-1": ""
+            "video_thumbnail": "/images/IB_Skinfilter_FaceWash.jpg",
+            "video-1": "/images/test.mp4"
         },
         {
             "name": "IsBeautiful Skin Filter Face Wash (Normal to Dry)- 100 ml",
@@ -143,8 +143,8 @@
             "image-1": "/images/IB_Skinfilter_FaceWash2.jpeg",
             "image-2": "/images/IB_Skinfilter_FaceWash2.jpeg",
             "image-3": "/images/IB_Skinfilter_FaceWash2.jpeg",
-            "image-4": "/images/IB_Skinfilter_FaceWash2.jpeg",
-            "video-1": ""
+            "video_thumbnail": "/images/IB_Skinfilter_FaceWash2.jpeg",
+            "video-1": "/images/test.mp4"
         },
         {
             "name": "IsBeautiful Skin Filter Mask (25 gm)- 6 Pcs.",
@@ -162,8 +162,8 @@
             "image-1": "/images/IB_Skinfilter_Charcoal_Mask.jpeg",
             "image-2": "/images/IB_Skinfilter_Charcoal_Mask.jpeg",
             "image-3": "/images/IB_Skinfilter_Charcoal_Mask.jpeg",
-            "image-4": "/images/IB_Skinfilter_Charcoal_Mask.jpeg",
-            "video-1": ""
+            "video_thumbnail": "/images/IB_Skinfilter_Charcoal_Mask.jpeg",
+            "video-1": "/images/test.mp4"
         },
         {
             "name": "IsBeautiful Skin Filter Mask Vit.C (25 gm)- 10 Pcs.",
@@ -181,8 +181,8 @@
             "image-1": "/images/IB_Skin_Filter_Mask_Pouches.jpg",
             "image-2": "/images/IB_Skin_Filter_Mask_Pouches.jpg",
             "image-3": "/images/IB_Skin_Filter_Mask_Pouches.jpg",
-            "image-4": "/images/IB_Skin_Filter_Mask_Pouches.jpg",
-            "video-1": ""
+            "video_thumbnail": "/images/IB_Skin_Filter_Mask_Pouches.jpg",
+            "video-1": "/images/test.mp4"
         },
         {
             "name": "IsBeautiful Skin Filter Mask Arbutin (25 gm)- 10 Pcs.",
@@ -200,8 +200,8 @@
             "image-1": "/images/IB_Skin_Filter_Mask_Pouches.jpg",
             "image-2": "/images/IB_Skin_Filter_Mask_Pouches.jpg",
             "image-3": "/images/IB_Skin_Filter_Mask_Pouches.jpg",
-            "image-4": "/images/IB_Skin_Filter_Mask_Pouches.jpg",
-            "video-1": ""
+            "video_thumbnail": "/images/IB_Skin_Filter_Mask_Pouches.jpg",
+            "video-1": "/images/test.mp4"
         },
         {
             "name": "IsBeautiful Skin Filter Mask Collagen (25 gm)- 10 Pcs.",
@@ -219,8 +219,8 @@
             "image-1": "/images/IB_Skin_Filter_Mask_Pouches.jpg",
             "image-2": "/images/IB_Skin_Filter_Mask_Pouches.jpg",
             "image-3": "/images/IB_Skin_Filter_Mask_Pouches.jpg",
-            "image-4": "/images/IB_Skin_Filter_Mask_Pouches.jpg",
-            "video-1": ""
+            "video_thumbnail": "/images/IB_Skin_Filter_Mask_Pouches.jpg",
+            "video-1": "/images/test.mp4"
         },
         {
             "name": "Pedicalm Intensive Hydration Balm- Hand & Feet Cream (80 gm)",
@@ -238,8 +238,8 @@
             "image-1": "/images/PC_Hydration_Balm.jpeg",
             "image-2": "/images/PC_Hydration_Balm.jpeg",
             "image-3": "/images/PC_Hydration_Balm.jpeg",
-            "image-4": "/images/PC_Hydration_Balm.jpeg",
-            "video-1": ""
+            "video_thumbnail": "/images/PC_Hydration_Balm.jpeg",
+            "video-1": "/images/test.mp4"
         },
         {
             "name": "Pedicalm Glycolic Mousse (100 ml)",
@@ -257,8 +257,8 @@
             "image-1": "/images/PC_Glyco_Mousse.jpeg",
             "image-2": "/images/PC_Glyco_Mousse.jpeg",
             "image-3": "/images/PC_Glyco_Mousse.jpeg",
-            "image-4": "/images/PC_Glyco_Mousse.jpeg",
-            "video-1": ""
+            "video_thumbnail": "/images/PC_Glyco_Mousse.jpeg",
+            "video-1": "/images/test.mp4"
         },
         {
             "name": "Pedicalm Urea Mousse (100 ml)",
@@ -276,8 +276,8 @@
             "image-1": "/images/PC_Urea_Mousse.jpg",
             "image-2": "/images/PC_Urea_Mousse.jpg",
             "image-3": "/images/PC_Urea_Mousse.jpg",
-            "image-4": "/images/PC_Urea_Mousse.jpg",
-            "video-1": ""
+            "video_thumbnail": "/images/PC_Urea_Mousse.jpg",
+            "video-1": "/images/test.mp4"
         }
     ]
 }

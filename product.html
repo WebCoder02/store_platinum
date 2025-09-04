@@ -244,7 +244,7 @@
 
         .video-wrapper video {
             width: 100%;
-            height: 100%;
+            height: auto;
             object-fit: cover;
             /* fill the box */
             border-radius: 10px;
@@ -262,22 +262,24 @@
             text-decoration: none;
             z-index: 1001;
         }
+
         /* Play button overlay */
         .play-button {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          font-size: 48px;
-          color: white;
-          background: rgba(0, 0, 0, 0.5);
-          border-radius: 50%;
-          width: 70px;
-          height: 70px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          pointer-events: none; /* let clicks pass through to link */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 48px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            /* let clicks pass through to link */
         }
 
 
@@ -363,43 +365,43 @@
 
                 if (product) {
                     document.getElementById('product-page-title').textContent = product.name;
+
+                    // Build gallery dynamically
+                    let galleryHTML = '<div class="gallery">';
+                    for (let i = 1; i <= 4; i++) {
+                        if (product[`image-${i}`]) {  // ✅ Only add if exists
+                            galleryHTML += `
+                            <a href="#modal-image-${i}" class="gallery-item">
+                            <img src="${product[`image-${i}`]}" alt="Product Images are missing">
+                            </a>
+                            `;
+                        }
+                    }
+
+                    for (let v = 1; v <= 2; v++) {
+                        if (product[`video-${v}`]) {  // ✅ Only add if exists
+                            galleryHTML += `
+                            <a href="#modal-video-${v}" class="gallery-item video-item">
+                                <img src="${product["video_thumbnail"] || ''}" alt="Watch video">
+                                <div class="play-button"><i class="fa fa-play"></i></div>
+                            </a>
+                        `;
+                        }
+                    }
+                    galleryHTML += '</div>';
+
+
+
+
+
                     container.innerHTML = `
-                        <div class="gallery">
-                            <!-- Horizontal image -->
-                            <a href="#modal-image-1" class="gallery-item">
-                                <img src="${product["image-1"]}" alt="Description of horizontal image">
-                            </a>
-                            <!-- Vertical image -->
-                            <a href="#modal-image-2" class="gallery-item">
-                                <img src="${product["image-2"]}" alt="Description of vertical image">
-                            </a>
-                            <!-- Vertical image -->
-                            <a href="#modal-image-3" class="gallery-item">
-                                <img src="${product["image-3"]}" alt="Description of vertical image">
-                            </a>
-                            <!-- Vertical image -->
-                            <a href="#modal-image-4" class="gallery-item">
-                                <img src="${product["image-4"]}" alt="Description of vertical image">
-                            </a>
-
-                            <!-- Vertical 9:16 video -->
-                            <a href="#modal-video-1" class="gallery-item video-item">
-                                <img src="${product["image-1"]}" alt="Watch video">
-                                <div class="play-button">
-                                    <i class="fa fa-play"></i>
-                                </div>
-                            </a>
-                        </div>
-                        
-        
-
-
-                        
+                        ${galleryHTML}
                         <h1 class="product-name">${product.name}</h1>
                         <p class="product-price">₹${product.price}</p>
                         ${product.rating ? `<div class="product-rating">${generateStars(product.rating)} (${product.rating})</div>` : ''}
                         <p class="product-description">${product.description || 'No description available.'}</p>
                         ${product.add_text ? `<p class="add-text">${product.add_text}</p>` : ''}
+    
                         <div class="action-buttons">
                             <button class="action-button whatsapp" onclick="shareOnWhatsApp('${product.name}', ${product.price}, '${headerData.whatsappNumber || ''}')">
                                 <i class="fab fa-whatsapp"></i> Order on WhatsApp
@@ -443,7 +445,20 @@
                                 <a href="#" class="close-button">×</a>
                                 <div class="video-wrapper">
                                     <video controls>
-                                        <source src="images/13691-251858985_medium.mp4" type="video/mp4">
+                                        <!--<source src="images/test2.mp4" type="video/mp4">-->
+                                        <source src="${product["video-1"]}" type="video/mp4">
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal for the video -->
+                        <div id="modal-video-2" class="modal" aria-hidden="true">
+                            <div class="modal-content">
+                                <a href="#" class="close-button">×</a>
+                                <div class="video-wrapper">
+                                    <video controls>
+                                        <source src="${product["video-2"]}" type="video/mp4">
+                                        <!--<source src="images/13691-251858985_medium.mp4" type="video/mp4">-->
                                     </video>
                                 </div>
                             </div>
